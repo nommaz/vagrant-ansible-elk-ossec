@@ -1,0 +1,10 @@
+---
+# handlers file for ossec-role
+
+- name: start ossec
+  service: name=ossec
+           state=started
+           enabled=yes
+
+- name: reload postfix
+  command: "/etc/init.d/postfix reload"

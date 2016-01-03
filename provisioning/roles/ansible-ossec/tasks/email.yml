@@ -1,0 +1,28 @@
+---
+# tasks file for ossec-role
+
+  - name: Create mailname file
+    lineinfile: >
+        dest=/etc/mailname create=yes mode=644 owner=root group=root
+        regexp=^{{ ossec_hostname }}
+        line='{{ ossec_hostname }}.{{ ossec_tld }}'
+
+  - name: install packages for postfix 
+    apt: name={{ item }} update_cache=no
+    with_items:
+        - postfix 
+        - mailutils 
+        - libsasl2-2 
+        - ca-certificates 
+        - libsasl2-modules
+        
+  - name: Set relay password
+    lineinfile: >
+        dest=/etc/postfix/sasl_passwd create=yes mode=400 owner=root group=root
+        regexp=^
+        line='{{ ossec_alert_email_relayhost }}    {{ ossec_alert_email }}:{{ ossec_alert_email_password }}'
+
+  - name: Create password database
+    command: postmap /etc/postfix/sasl_passwd
+    
+    notify: reload postfix

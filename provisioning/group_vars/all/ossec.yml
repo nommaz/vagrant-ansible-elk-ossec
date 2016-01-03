@@ -1,0 +1,6 @@
+
+## ossec
+ossec_alert_email: your_email@example.org
+ossec_alert_email_password: enteryouremailpassword
+ossec_alert_email_relayhost: '[smtp.gmail.com]:587'
+ossec_tld: example.org

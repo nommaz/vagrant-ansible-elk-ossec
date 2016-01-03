@@ -1,0 +1,17 @@
+---
+# tasks file for ossec-role
+
+- name: Check if ossec is installed and patched for json support
+  command: grep -c "jsonout_output" /var/ossec/etc/ossec.conf
+  register: ossec_patched
+  ignore_errors: True
+  changed_when: False
+    
+- include: ossec.yml
+  when: ansible_architecture == 'x86_64' and ossec_patched.stdout != '1'
+
+- include: json_patch.yml
+  when: json_output == true and ossec_patched.stdout != '1'
+  
+- include: email.yml
+  when: ossec_email_alerts == true

@@ -1,0 +1,30 @@
+---
+# tasks file for ossec-role
+
+  - name: install packages for ossec build
+    apt: name={{ item }} update_cache=yes cache_valid_time=3600
+    with_items:
+        - libssl-dev
+        - libnet-ssleay-perl
+        - libio-socket-ssl-perl
+        - git
+
+  - name: Download patch for json support
+    git: repo=https://github.com/ossec/ossec-hids.git 
+         dest=/usr/local/src/ossec-hids 
+         clone=yes 
+         accept_hostkey=yes 
+         ssh_opts="-o StrictHostKeyChecking=no"
+      
+  - name: Push patch automation config file to server
+    template: src=preloaded-vars.conf.j2
+              dest=/usr/local/src/ossec-hids/etc/preloaded-vars.conf  #TODO variable
+                 
+  - name: Apply patch
+    command: chdir=/usr/local/src/ossec-hids #TODO merge chdir into command
+    command: /usr/local/src/ossec-hids/install.sh #TODO variable
+    
+  - name: Add json support to ossec config
+    lineinfile: "dest=/var/ossec/etc/ossec.conf insertbefore='</global>' line='    <jsonout_output>yes</jsonout_output>'"
+    
+    notify: start ossec
