@@ -1,0 +1,6 @@
+.vagrant/*
+*.log
+
+# Mac crap
+.DS_Store
+.orig

@@ -27,4 +27,4 @@
   - name: Add json support to ossec config
     lineinfile: "dest=/var/ossec/etc/ossec.conf insertbefore='</global>' line='    <jsonout_output>yes</jsonout_output>'"
     
-    notify: start ossec
+    notify: restart ossec

@@ -5,6 +5,11 @@
   service: name=ossec
            state=started
            enabled=yes
+           
+- name: restart ossec
+  service: name=ossec
+           state=restarted
+           enabled=yes
 
 - name: reload postfix
   command: "/etc/init.d/postfix reload"

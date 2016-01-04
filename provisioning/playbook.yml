@@ -1,6 +1,16 @@
 ---
 
 #########################
+# CIS Hardening         #
+#########################
+
+- hosts: master
+  sudo: true
+  tags: cis
+  roles:
+    - ansible-cis
+
+#########################
 # Elasticsearch install #
 #########################
 
@@ -39,3 +49,4 @@
   tags: ossec
   roles:
     - ansible-ossec
+    

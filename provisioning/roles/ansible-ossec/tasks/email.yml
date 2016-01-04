@@ -22,7 +22,9 @@
         regexp=^
         line='{{ ossec_alert_email_relayhost }}    {{ ossec_alert_email }}:{{ ossec_alert_email_password }}'
 
-  - name: Create password database
-    command: postmap /etc/postfix/sasl_passwd
+  - name: Update postfix config to use sasl_passwd file
+    command: /usr/sbin/postmap /etc/postfix/sasl_passwd
     
+  - name: Validate certificates to avoid running into error
+    shell: cat /etc/ssl/certs/Thawte_Premium_Server_CA.pem | sudo tee -a /etc/postfix/cacert.pem
     notify: reload postfix
