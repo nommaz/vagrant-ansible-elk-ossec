@@ -1,5 +1,8 @@
 # Please enter following parameters before system hardening
 
+# Section hugin
+use_apt_cacher: False
+
 # Section 02
 
 partitioning: False

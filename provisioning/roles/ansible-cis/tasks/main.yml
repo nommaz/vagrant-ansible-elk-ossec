@@ -2,6 +2,9 @@
 
   - include: check_requirements.yml
 
+  - include: hugin.yml
+    tags: hugin_common
+    
   - include: section_02.yml
     tags: section02
 

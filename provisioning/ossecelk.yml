@@ -1,0 +1,55 @@
+---
+
+# ansible-playbook ossecelk.yml -u nommazve -v
+
+#########################
+# CIS Hardening         #
+#########################
+
+- hosts: findikli-ossec
+  sudo: true
+  tags: cis
+  roles:
+    - role: ansible-cis
+      use_apt_cacher: True
+    
+#########################
+# Elasticsearch install #
+#########################
+
+- hosts: findikli-ossec
+  sudo: true
+  tags: elasticsearch
+  roles:
+    - ansible-elasticsearch
+
+#########################
+# Logstash install #
+#########################
+
+- hosts: findikli-ossec
+  sudo: true
+  tags: logstash
+  roles:
+    - ansible-logstash
+
+#########################
+# Kibana install #
+#########################
+
+- hosts: findikli-ossec
+  sudo: true
+  tags: kibana
+  roles:
+    - ansible-kibana
+
+#########################
+# Ossec install #
+#########################
+
+- hosts: findikli-ossec
+  sudo: true
+  tags: ossec
+  roles:
+    - ansible-ossec
+    
