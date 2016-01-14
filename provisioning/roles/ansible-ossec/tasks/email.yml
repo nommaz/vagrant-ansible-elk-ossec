@@ -20,7 +20,7 @@
     lineinfile: >
         dest=/etc/postfix/sasl_passwd create=yes mode=400 owner=root group=root
         regexp=^
-        line='{{ ossec_alert_email_relayhost }}    {{ ossec_alert_email }}:{{ ossec_alert_email_password }}'
+        line='{{ ossec_alert_email_relayhost }}    {{ ossec_alert_email_address }}:{{ ossec_alert_email_password }}'
 
   - name: Update postfix config to use sasl_passwd file
     command: /usr/sbin/postmap /etc/postfix/sasl_passwd

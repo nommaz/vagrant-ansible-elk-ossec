@@ -2,10 +2,10 @@
 # tasks file for ossec-role
 
 - name: Set hostname
-  hostname: name={{ ossec_hostname }}
+  hostname: name={{ hugin_hostname }}
 
 - name: Add hostname to hosts
-  lineinfile: "dest=/etc/hosts state=present regexp='^127.0.1.1' line='127.0.1.1       {{ ossec_hostname }}'"
+  lineinfile: "dest=/etc/hosts state=present regexp='^127.0.1.1' line='127.0.1.1       {{ hugin_hostname }}'"
   
 - name: Stop Ossec
   command: "/var/ossec/bin/ossec-control stop"
