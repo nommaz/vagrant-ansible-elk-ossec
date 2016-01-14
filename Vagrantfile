@@ -21,12 +21,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       vb.customize ["modifyvm", :id, "--cpus", "2", "--memory", "2048"]
   end
 
-  config.vm.provider "vmware_fusion" do |v, override|
-     ## the puppetlabs ubuntu 14-04 image might work on vmware, not tested? 
-    v.box = "phusion/ubuntu-14.04-amd64"
-    v.vmx["numvcpus"] = "2"
-    v.vmx["memsize"] = "4096"
-  end
   config.vm.provision :shell,
     :keep_color => true,
     :path => "setup.sh"
