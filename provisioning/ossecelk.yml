@@ -44,6 +44,16 @@
     - ansible-kibana
 
 #########################
+# Nginx reverse proxy   #
+#########################
+
+- hosts: findikli-ossec
+  sudo: true
+  tags: nginx
+  roles:
+    - ansible-nginx
+    
+#########################
 # Ossec install #
 #########################
 

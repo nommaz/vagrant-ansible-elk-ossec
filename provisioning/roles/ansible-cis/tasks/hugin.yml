@@ -26,5 +26,8 @@
   - ufw: rule=allow name=OpenSSH
     tags: packages
     
+  - ufw: rule=allow name=https
+    tags: packages
+    
   - ufw: state=enabled policy=deny
     tags: packages
