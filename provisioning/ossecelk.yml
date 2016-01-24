@@ -1,23 +1,22 @@
 ---
 
-# ansible-playbook ossecelk.yml -u nommazve -v
+# ansible-playbook -i ../../vagrant-ansible-common/XXX/hosts ossecelk.yml -v
 
 #########################
 # CIS Hardening         #
 #########################
 
-- hosts: findikli-ossec
+- hosts: ossecservers
   sudo: true
   tags: cis
   roles:
     - role: ansible-cis
-      use_apt_cacher: True
     
 #########################
 # Elasticsearch install #
 #########################
 
-- hosts: findikli-ossec
+- hosts: ossecservers
   sudo: true
   tags: elasticsearch
   roles:
@@ -27,7 +26,7 @@
 # Logstash install #
 #########################
 
-- hosts: findikli-ossec
+- hosts: ossecservers
   sudo: true
   tags: logstash
   roles:
@@ -37,17 +36,17 @@
 # Kibana install #
 #########################
 
-- hosts: findikli-ossec
+- hosts: ossecservers
   sudo: true
   tags: kibana
   roles:
-    - ansible-kibana
+   - ansible-kibana
 
 #########################
 # Nginx reverse proxy   #
 #########################
 
-- hosts: findikli-ossec
+- hosts: ossecservers
   sudo: true
   tags: nginx
   roles:
@@ -57,7 +56,7 @@
 # Ossec install #
 #########################
 
-- hosts: findikli-ossec
+- hosts: ossecservers
   sudo: true
   tags: ossec
   roles:

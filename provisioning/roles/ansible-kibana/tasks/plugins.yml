@@ -1,5 +1,5 @@
 # Loop though Kibana_plugins and install them
-- name: Removing Plugins if they exist
+- name: Removing Plugins if they exist #TODO only if something wrong with plugin
   action: >
     shell bin/kibana plugin --remove "{{ item.shortname }}"
     chdir="{{ kibana_dir }}"

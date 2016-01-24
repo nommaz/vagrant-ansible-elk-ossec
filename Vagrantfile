@@ -20,8 +20,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
 
   config.vm.provider :virtualbox do |vb|
-      vb.customize ["modifyvm", :id, "--cpus", "2", "--memory", "2048"]
+      vb.customize ["modifyvm", :id, "--cpus", "4", "--memory", "2048"]
   end
+
+  config.vm.synced_folder "../vagrant-ansible-common", "/vagrant-ansible-common"
 
   config.vm.provision :shell,
     :keep_color => true,

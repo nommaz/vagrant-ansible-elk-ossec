@@ -7,6 +7,11 @@
 - name: Add hostname to hosts
   lineinfile: "dest=/etc/hosts state=present regexp='^127.0.1.1' line='127.0.1.1       {{ hugin_hostname }}'"
   
+- name: ensure build tools is installed to compile ossec
+  apt: name={{ item }} update_cache=yes cache_valid_time=18000
+  with_items:
+    - build-essential
+    
 - name: Stop Ossec
   command: "/var/ossec/bin/ossec-control stop"
   ignore_errors: yes
