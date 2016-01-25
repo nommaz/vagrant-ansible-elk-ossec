@@ -34,3 +34,13 @@
 
 - name: Configure Kibana log rotation
   template: src=logrotate_kibana.j2 dest=/etc/logrotate.d/kibana
+  
+- name: Add www user to shadow group
+  user: name={{ nginx_user }} groups=www-data,shadow append=yes
+
+- name: Add pamd file for login support to nginx
+  copy: src="{{ item }}" dest=/etc/pam.d/{{ item }} owner=root group=root
+  with_items:
+    - "login"
+    - "nginx"
+    
