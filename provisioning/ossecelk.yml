@@ -1,6 +1,7 @@
 ---
-
-# ansible-playbook -i ../../vagrant-ansible-common/XXX/hosts ossecelk.yml -v
+# ansible-playbook -i ../../common/XXX/hosts ossecelk.yml -u YYY -v 
+# XXX: dev,test,prod
+# YYY: remote user login name
 
 #########################
 # CIS Hardening         #
